@@ -303,7 +303,7 @@ oled.fill(0)
 
 oled.show()
 
-letterScan(oled, 64, 100)
+letters(oled, 20)
 
     
     
