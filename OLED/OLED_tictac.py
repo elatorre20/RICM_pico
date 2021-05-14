@@ -164,6 +164,35 @@ class SSD1306_SPI(SSD1306):
         self.spi.write(buf)
         self.cs(1)
         
+class Board:
+    def __init__(self,x,y,size,length):
+        self.x = x
+        self.y = y
+        self.size = size
+        self.length = length
+        
+def draw_board(screen,board):
+    x = board.length + board.x
+    y = 0 + board.y
+    #horizontal
+    for i in range(board.size-1):
+        screen.line(x,y,x,y+(board.size*board.length),1)
+        x = x + board.length
+    x = 0 + board.x
+    y = board.length + board.y
+    #vertical
+    for i in range(board.size-1):
+        screen.line(x,y,x+(board.size*board.length),y,1)
+        y = y + board.length
+    screen.show()
+    
+def place(screen,board,x,y,char):
+    x = board.x + (x*board.length) + ((board.length-8)//2)
+    y = board.y + (y*board.length) + ((board.length-8)//2)
+    screen.text(char,x,y,1)
+    screen.show()
+    
+    
 
 sda=machine.Pin(26)
 scl=machine.Pin(27)
@@ -180,75 +209,8 @@ else:
 for device in devices:
     print("Decimal address: ",device," | Hexa address: ",hex(device))
     
-#screensavers
-    
-def stars(screen, n=20):
-    xpos = [0] * n
-    ypos = [0] * n
-    i = 0
-    for j in range(n):
-        x = randint(0, 127)
-        y = randint(0, 32)
-        xpos[j] = x
-        ypos[j] = y
-        oled.fill_rect(x,y,2,2,1)
-        oled.show()
-        sleep(1)
-    while(True):
-        x = randint(0, 127)
-        y = randint(0, 32)
-        oled.fill_rect(xpos[i],ypos[i],2,2,0)
-        xpos[i] = x
-        ypos[i] = y
-        oled.fill_rect(x,y,2,2,1)
-        oled.show()
-        sleep(1)
-        i = i + 1
-        i = i % n
-        
-def letters(screen, n=20):
-    xpos = [0] * n
-    ypos = [0] * n
-    i = 0
-    for j in range(n):
-        x = (randint(0, 127) // 8) * 8
-        y = (randint(0, 32) // 8) * 8
-        c = str(chr(randint(33, 126)))
-        xpos[j] = x
-        ypos[j] = y
-        screen.text(c,x,y)
-        screen.show()
-        sleep(1)
-    while(True):
-        x = (randint(0, 127) // 8) * 8
-        y = (randint(0, 32) // 8) * 8
-        c = str(chr(randint(33, 126)))
-        oled.fill_rect(xpos[i],ypos[i],8,8,0)
-        xpos[i] = x
-        ypos[i] = y
-        screen.text(c,x,y)
-        screen.show()
-        sleep(1)
-        i = i + 1
-        i = i % n
-        
-def snake(screen, l=10, speed=6):
-    x = 0
-    y = 0
-    s = 1/speed
-    while(True):
-        x = -l
-        y = randint(0,31)
-        while(x <= 128):
-            screen.line(x,y,x+l,y,1)
-            screen.line(x,y+1,x+l,y+1,1)
-            screen.pixel(x-1, y, 0)
-            screen.pixel(x-1, y+1, 0)
-            screen.show()
-            sleep(s)
-            x = x + 1
-            
-        
+
+
     
     
     
@@ -260,7 +222,19 @@ oled.fill(0)
 
 oled.show()
 
-letters(oled, 20)
+board1 = Board(50,2,3,10)
+
+draw_board(oled,board1)
+
+place(oled,board1,0,0,"x")
+place(oled,board1,1,0,"o")
+place(oled,board1,2,0,"x")
+place(oled,board1,0,1,"o")
+place(oled,board1,1,1,"x")
+place(oled,board1,2,1,"o")
+place(oled,board1,0,2,"x")
+place(oled,board1,1,2,"o")
+place(oled,board1,2,2,"x")
 
     
     
