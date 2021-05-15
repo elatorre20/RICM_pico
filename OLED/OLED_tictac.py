@@ -290,9 +290,16 @@ i2c=machine.I2C(1, sda=sda, scl=scl, freq=400000)
 oled = SSD1306_I2C(128, 32, i2c)
 
 oled.poweron()
+oled.fill(0)
+oled.show()
+
+oled.text('TicTacToe!', 0,0)
+oled.text('c. RICM 2021', 0, 16)
+oled.show()
+
+sleep(5)
 
 oled.fill(0)
-
 oled.show()
 
 game = tictactoe(oled,50,2,3,10)
