@@ -164,50 +164,123 @@ class SSD1306_SPI(SSD1306):
         self.spi.write(buf)
         self.cs(1)
         
-class Board:
-    def __init__(self,x,y,size,length):
+class tictactoe:
+    def __init__(self,screen,x,y,size,length):
+        self.screen = screen
         self.x = x
         self.y = y
         self.size = size
         self.length = length
+        columns = []
+        for i in range(size):
+            row = [None] * size
+            columns = columns + [list.copy(row)]
+        self.state = columns
         
-def draw_board(screen,board):
-    x = board.length + board.x
-    y = 0 + board.y
-    #horizontal
-    for i in range(board.size-1):
-        screen.line(x,y,x,y+(board.size*board.length),1)
-        x = x + board.length
-    x = 0 + board.x
-    y = board.length + board.y
-    #vertical
-    for i in range(board.size-1):
-        screen.line(x,y,x+(board.size*board.length),y,1)
-        y = y + board.length
-    screen.show()
+    def draw_board(self):
+        x = self.length + self.x
+        y = 0 + self.y
+        #horizontal
+        for i in range(self.size-1):
+            self.screen.line(x,y,x,y+(self.size*self.length),1)
+            x = x + self.length
+        x = 0 + self.x
+        y = self.length + self.y
+        #vertical
+        for i in range(self.size-1):
+            self.screen.line(x,y,x+(self.size*self.length),y,1)
+            y = y + self.length
+        self.screen.show()
     
-def place(screen,board,x,y,char):
-    x = board.x + (x*board.length) + ((board.length-8)//2)
-    y = board.y + (y*board.length) + ((board.length-8)//2)
-    screen.text(char,x,y,1)
-    screen.show()
+    def place(self,x,y,char):
+        self.state[y][x] = char
+        self.update()
+        self.check_win()
     
-    
-
+    def update(self):
+        for i in range(self.size):
+            for j in range(self.size):
+                if self.state[i][j] == 'x':
+                    x = self.x + (j*self.length) + ((self.length-6)//2)
+                    y = self.y + (i*self.length) + ((self.length-8)//2)
+                    self.screen.text("x",x,y,1)
+                if self.state[i][j] == 'o':
+                    x = self.x + (j*self.length) + ((self.length-6)//2)
+                    y = self.y + (i*self.length) + ((self.length-8)//2)
+                    self.screen.text("o",x,y,1)
+        self.screen.show()
+        
+        
+    def check_win(self):
+        sleep(1)
+        #vertical
+        for i in self.state:
+            player = i[0]
+            win = True
+            for j in range(self.size):
+                if(i[j] != player or i[j] == None):
+                    win = False
+            if win:
+                self.screen.fill_rect(12,12,104,8,0)
+                self.screen.text("player " + player + " won!", 12, 12)
+                self.screen.show()
+                while(True):
+                    sleep(1)
+        #horizontal
+        for j in range(self.size):
+            player = self.state[0][j]
+            win = True
+            for i in self.state:
+                if(i[j] != player or i[j] == None):
+                    win = False
+            if win:
+                self.screen.fill_rect(12,12,104,8,0)
+                self.screen.text("player " + player + " won!", 12, 12)
+                self.screen.show()
+                while(True):
+                    sleep(1)
+        #diagonal
+        player = self.state[0][0]
+        win = True
+        for i in range(self.size):
+            if(self.state[i][i] != player or self.state[i][i] == None):
+                    win = False
+        if win:
+                self.screen.fill_rect(12,12,104,8,0)
+                self.screen.text("player " + player + " won!", 12, 12)
+                self.screen.show()
+                while(True):
+                    sleep(1)
+        x = 0
+        y = self.size - 1
+        player = self.state[y][x]
+        win = True
+        for i in range(self.size):
+            if(self.state[y][x] != player or self.state[y][x] == None):
+                    win = False
+            x = x + 1
+            y = y - 1
+        if win:
+                self.screen.fill_rect(12,12,104,8,0)
+                self.screen.text("player " + player + " won!", 12, 12)
+                self.screen.show()
+                while(True):
+                    sleep(1)
+            
 sda=machine.Pin(26)
 scl=machine.Pin(27)
 i2c=machine.I2C(1, sda=sda, scl=scl, freq=400000)
 
-print('Scan i2c bus...')
-devices = i2c.scan()
-
-if len(devices) == 0:
-    print("No i2c device !")
-else:
-    print('i2c devices found:',len(devices))
-
-for device in devices:
-    print("Decimal address: ",device," | Hexa address: ",hex(device))
+# print('Scan i2c bus...')
+# devices = i2c.scan()
+# 
+# if len(devices) == 0:
+#     print("No i2c device !")
+# else:
+#     print('i2c devices found:',len(devices))
+# 
+# for device in devices:
+#     print("Decimal address: ",device," | Hexa address: ",hex(device))
     
 
 
@@ -222,21 +295,11 @@ oled.fill(0)
 
 oled.show()
 
-board1 = Board(50,2,3,10)
+game = tictactoe(oled,50,2,3,10)
 
-draw_board(oled,board1)
+game.draw_board()
 
-place(oled,board1,0,0,"x")
-place(oled,board1,1,0,"o")
-place(oled,board1,2,0,"x")
-place(oled,board1,0,1,"o")
-place(oled,board1,1,1,"x")
-place(oled,board1,2,1,"o")
-place(oled,board1,0,2,"x")
-place(oled,board1,1,2,"o")
-place(oled,board1,2,2,"x")
+print('beginning game!')
 
-    
-    
-    
-    
+
+
