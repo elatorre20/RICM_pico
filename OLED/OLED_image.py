@@ -160,7 +160,14 @@ class SSD1306_SPI(SSD1306):
         self.cs(0)
         self.spi.write(buf)
         self.cs(1)
-        
+
+def img_read(filename):
+    img = open(filename, 'rb')
+    px = img.read()
+    px = px[62:]
+    array = bytearray(px)
+    imgbuf = framebuf.FrameBuffer(array, 128,32, framebuf.MONO_HLSB)
+    return(imgbuf)
 
 sda=machine.Pin(26)
 scl=machine.Pin(27)
@@ -175,17 +182,7 @@ oled.text("hello world", 0, 0)
 
 oled.show()
 
-img = open('img.bmp', 'rb')
+signature = img_read('img.bmp')
 
-print('\n')
-
-bits = img.read()
-
-bits = bits[62:]
-
-array = bytearray(bits)
-
-imgbuf = framebuf.FrameBuffer(array, 128,32, framebuf.MONO_HLSB)
-
-oled.blit(imgbuf, 0,0)
+oled.blit(signature, 0,0)
 oled.show()
