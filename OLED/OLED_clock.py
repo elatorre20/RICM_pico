@@ -169,14 +169,80 @@ def img_read(filename):
     imgbuf = framebuf.FrameBuffer(array, 128,32, framebuf.MONO_HLSB)
     return(imgbuf)
 
-def display_time(screen, digit0, digit1, digit2, digit3):
+def display_time(screen, f, number):
     screen.fill(0)
-    screen.blit(eight, 0,0)
-    screen.blit(eight, 31,0)
-    screen.blit(colon, 62,0)
-    screen.blit(eight, 66, 0)
-    screen.blit(eight, 97,0)
+    if(len(number) > 4):
+        screen.text('invalid time or format')
+        return
+    if(len(number) < 4):
+        for i in range(4):
+            number = '0' + number
+            if(len(number) == 4):
+                break
+    for i in number:
+        if (int(i) not in [0,1,2,3,4,5,6,7,8,9]):
+            screen.text('invalid time or format')
+            return
+    d0 = int(number[0])
+    d1 = int(number[1])
+    d2 = int(number[2])
+    d3 = int(number[3])
+    screen.blit(f.digits[d0], 0,0)
+    screen.blit(f.digits[d1], 31,0)
+    screen.blit(f.digits[10], 62,0)
+    screen.blit(f.digits[d2], 66, 0)
+    screen.blit(f.digits[d3], 97,0)
     screen.show()
+    
+class font():
+    def __init__(self):
+        digits = []
+        digits = digits + [img_read('img/0.bmp')]
+        digits = digits + [img_read('img/1.bmp')]
+        digits = digits + [img_read('img/2.bmp')]
+        digits = digits + [img_read('img/3.bmp')]
+        digits = digits + [img_read('img/4.bmp')]
+        digits = digits + [img_read('img/5.bmp')]
+        digits = digits + [img_read('img/6.bmp')]
+        digits = digits + [img_read('img/7.bmp')]
+        digits = digits + [img_read('img/8.bmp')]
+        digits = digits + [img_read('img/9.bmp')]
+        digits = digits + [img_read('img/colon.bmp')]
+        self.digits = digits
+    
+def time_sweep(screen, f):
+    for i in range(10000):
+        j = str(i)
+        display_time(screen, f, j)
+        #utime.sleep(0.001)
+        
+def stopwatch(screen, f):
+    minutes = 0
+    seconds = 0
+    number = ''
+    while(True):
+        print(minutes)
+        print(seconds)
+        number = ''
+        if(minutes > 99):
+            return
+        if(seconds == 60):
+            seconds = 0
+            minutes = minutes + 1
+        if(seconds < 10):
+            number = '0' + str(seconds)
+            number = str(minutes) + number
+            display_time(screen, f, number)
+            utime.sleep(1)
+            seconds = seconds + 1
+            continue
+        else:
+            number = str(minutes) + str(seconds)
+            display_time(screen, f, number)
+            utime.sleep(1)
+            seconds = seconds + 1
+            continue
+        
 
 sda=machine.Pin(26)
 scl=machine.Pin(27)
@@ -191,18 +257,10 @@ oled.text("hello world", 0, 0)
 
 oled.show()
 
-zero = img_read('img/0.bmp')
-one = img_read('img/1.bmp')
-two = img_read('img/2.bmp')
-three = img_read('img/3.bmp')
-four = img_read('img/4.bmp')
-five = img_read('img/5.bmp')
-six = img_read('img/6.bmp')
-seven = img_read('img/7.bmp')
-eight = img_read('img/8.bmp')
-nine = img_read('img/9.bmp')
-colon = img_read('img/colon.bmp')
+seg7 = font()
+
 
 oled.fill(0)
 oled.show()
-display_time(oled, one, two, three, four)
+
+stopwatch(oled, seg7)

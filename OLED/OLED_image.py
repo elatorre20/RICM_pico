@@ -182,7 +182,7 @@ oled.text("hello world", 0, 0)
 
 oled.show()
 
-signature = img_read('img/dad.bmp')
+signature = img_read('img/img.bmp')
 
 oled.blit(signature, 0,0)
 oled.show()
