@@ -224,8 +224,6 @@ def stopwatch(screen, f):
     seconds = 0
     number = ''
     while(True):
-        print(minutes)
-        print(seconds)
         number = ''
         if(minutes > 99):
             return
