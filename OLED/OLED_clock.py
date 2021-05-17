@@ -195,6 +195,9 @@ def display_time(screen, f, number):
     screen.show()
     
 class font():
+    #requires images for each digit to be loaded into
+    # the /img folder, with the name 0.bmp to 9.bmp,
+    # with the separator named colon.bmp
     def __init__(self):
         digits = []
         digits = digits + [img_read('img/0.bmp')]
