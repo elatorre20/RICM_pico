@@ -1,13 +1,10 @@
-#makes some simple endlessly repeating patterns on the screen
-
 # MicroPython SSD1306 OLED driver, I2C and SPI interfaces
 # Taken from https://github.com/micropython/micropython/blob/master/drivers/display/ssd1306.py
 
 from micropython import const
 import framebuf
 import machine
-from utime import sleep 
-from random import randint
+import utime
 
 
 # register definitions
@@ -165,28 +162,4 @@ class SSD1306_SPI(SSD1306):
         self.cs(1)
         
 
-sda=machine.Pin(26)
-scl=machine.Pin(27)
-i2c=machine.I2C(1, sda=sda, scl=scl, freq=400000)
-    
-class snake():
-    self.x = 0
-    self.y = 0
-    self.length = 5
-    self.score = 0
-    
-    
-oled = SSD1306_I2C(128, 32, i2c)
 
-oled.poweron()
-
-oled.fill(0)
-
-oled.show()
-
-snake(oled, 10)
-
-    
-    
-    
-    
