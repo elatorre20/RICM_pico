@@ -178,10 +178,14 @@ for device in devices:
     print("Decimal address: ",device," | Hexa address: ",hex(device))
     
     
-oled = SSD1306_I2C(128, 32, i2c)
+oled0 = SSD1306_I2C(128, 64, i2c, 0x3C)
+oled1 = SSD1306_I2C(128, 64, i2c, 0x3D)
 
-oled.poweron()
+oled0.poweron()
+oled1.poweron()
 
-oled.text("hello world", 0, 0)
+oled0.text("screen 0", 0, 0)
+oled1.text("screen 1", 0, 0)
 
-oled.show()
+oled0.show()
+oled1.show()
