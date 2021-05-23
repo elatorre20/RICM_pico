@@ -1,8 +1,12 @@
-from machine import Pin
-from machine import Timer
+from micropython import const
+import machine
+import utime
+import LEDS
 
-clk = Pin(16, Pin.OUT)
-enb = Pin(17, Pin.OUT)
-data = Pin(18, Pin.OUT)
+sda=machine.Pin(26)
+scl=machine.Pin(27)
+i2c=machine.I2C(1, sda=sda, scl=scl, freq=400000)
 
-clock = Timer(1, Timer.PWM)
+controller = LEDS.PCA9532(i2c, 0x60)
+
+controller.all_on()
