@@ -4,6 +4,7 @@ import utime
 
 #library for using a PCA9532 16-channel LED controller with a raspberry pi pico
 #NB to get the chip to work, you cannot have the address pins or reset pin floating
+#address range: 0x60-0x67
 
 # register definitions
 # byte fields: 0-2: unused, 3: autoincrement flag, 4-7: register address
@@ -72,8 +73,3 @@ class PCA9532():
         self.reg_write(LS3, LEDS_OFF)
         
         
-sda=machine.Pin(26)
-scl=machine.Pin(27)
-i2c=machine.I2C(1, sda=sda, scl=scl, freq=400000)
-
-controller = PCA9532(i2c, 0x60)
