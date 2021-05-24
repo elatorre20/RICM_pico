@@ -36,7 +36,10 @@ class PCA9532():
         self.address = address
         self.temp = bytearray(2)
         self.temp_read = bytearray(1)
+        #states: 0 = off, 1 = on, 2 = PWM0, 3 = PWM1
+        #leds 13, 14, 15 are digital-only 
         self.led_state = [0] * 16
+        #set PWM blink rate high enough for smooth dimming using duty cycle
         self.reg_write(PSC0, PWM_SMOOTH)
         self.reg_write(PSC1, PWM_SMOOTH)
         self.set_brightness(0, 127)
@@ -51,7 +54,27 @@ class PCA9532():
         self.i2c.readfrom_into(self.address, self.temp_read)
         return(self.temp_read[0])
         
+    def update_state(self):
+        def check_state(s):
+            if s == '00':
+                return 0
+            if s == '01':
+                return 1
+            if s == '10':
+                return 2
+            if s == '11':
+                return 3
+        leds0 = self.reg_read(LS0)
+        leds1 = self.reg_read(LS1)
+        leds2 = self.reg_read(LS2)
+        leds3 = self.reg_read(LS3)
+        leds = leds0 + leds1 + leds2 + leds3
+        for i in range (0, 16):
+            led = leds[(2*i):((2*i)+2)]
+            self.led_state[i] = check_state(led)
+        
     def set_brightness(self, pwm, level):
+        #0 = off, 255 = full brightness
         if(level > 255 or level < 0):
             print('Brightness must be in the range 0,255')
             return
