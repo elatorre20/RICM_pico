@@ -1,6 +1,6 @@
 from micropython import const
 import machine
-import utime
+from utime import sleep_ms
 
 #library for using a PCA9532 16-channel LED controller with a raspberry pi pico
 #NB to get the chip to work, you cannot have the address pins or reset pin floating
@@ -36,9 +36,6 @@ class PCA9532():
         self.address = address
         self.temp = bytearray(2)
         self.temp_read = bytearray(1)
-        #states: 0 = off, 1 = on, 2 = PWM0, 3 = PWM1
-        #leds 13, 14, 15 are digital-only 
-        self.led_state = [0] * 16
         #set PWM blink rate high enough for smooth dimming using duty cycle
         self.reg_write(PSC0, PWM_SMOOTH)
         self.reg_write(PSC1, PWM_SMOOTH)
@@ -46,6 +43,7 @@ class PCA9532():
         self.set_brightness(1, 127)
         
     def reg_write(self, register, value):
+        sleep_ms(100)
         self.temp[0] = register
         self.temp[1] = value
         self.i2c.writeto(self.address, self.temp)
@@ -53,25 +51,6 @@ class PCA9532():
     def reg_read(self, register):
         self.i2c.readfrom_into(self.address, self.temp_read)
         return(self.temp_read[0])
-        
-    def update_state(self):
-        def check_state(s):
-            if s == '00':
-                return 0
-            if s == '01':
-                return 1
-            if s == '10':
-                return 2
-            if s == '11':
-                return 3
-        leds0 = str(self.reg_read(LS0))
-        leds1 = str(self.reg_read(LS1))
-        leds2 = str(self.reg_read(LS2))
-        leds3 = str(self.reg_read(LS3))
-        leds = leds0 + leds1 + leds2 + leds3
-        for i in range (0, 16):
-            led = leds[(2*i):((2*i)+2)]
-            self.led_state[i] = check_state(led)
         
     def set_brightness(self, pwm, level):
         #0 = off, 255 = full brightness
@@ -82,26 +61,6 @@ class PCA9532():
             self.reg_write(PWM0, level)
         if(pwm == 1):
             self.reg_write(PWM1, level)
-            
-    def set_led(self, led, state):
-        self.update_state()
-        self.led_state[led] = state
-        regs = [LS0, LS1, LS2, LS3]
-        j = 0
-        b = ''
-        for i in led_state:
-            if i = 0:
-                b = b + '00'
-            elif i = 1:
-                b = b + '01'
-            elif i = 2:
-                b = b + '10'
-            elif i = 3:
-                b = b + '11'
-            if len(b) == 8:
-                self.reg_write(regs[j], b)
-                b = ''
-                j = j + 1
                 
             
     def all_on(self):

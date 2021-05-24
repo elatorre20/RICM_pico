@@ -9,4 +9,6 @@ i2c=machine.I2C(1, sda=sda, scl=scl, freq=400000)
 
 controller = LEDS.PCA9532(i2c, 0x60)
 
-controller.all_on()
+while(True):
+    controller.all_on()
+    controller.all_off()
