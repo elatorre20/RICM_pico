@@ -64,10 +64,10 @@ class PCA9532():
                 return 2
             if s == '11':
                 return 3
-        leds0 = self.reg_read(LS0)
-        leds1 = self.reg_read(LS1)
-        leds2 = self.reg_read(LS2)
-        leds3 = self.reg_read(LS3)
+        leds0 = str(self.reg_read(LS0))
+        leds1 = str(self.reg_read(LS1))
+        leds2 = str(self.reg_read(LS2))
+        leds3 = str(self.reg_read(LS3))
         leds = leds0 + leds1 + leds2 + leds3
         for i in range (0, 16):
             led = leds[(2*i):((2*i)+2)]
@@ -82,6 +82,27 @@ class PCA9532():
             self.reg_write(PWM0, level)
         if(pwm == 1):
             self.reg_write(PWM1, level)
+            
+    def set_led(self, led, state):
+        self.update_state()
+        self.led_state[led] = state
+        regs = [LS0, LS1, LS2, LS3]
+        j = 0
+        b = ''
+        for i in led_state:
+            if i = 0:
+                b = b + '00'
+            elif i = 1:
+                b = b + '01'
+            elif i = 2:
+                b = b + '10'
+            elif i = 3:
+                b = b + '11'
+            if len(b) == 8:
+                self.reg_write(regs[j], b)
+                b = ''
+                j = j + 1
+                
             
     def all_on(self):
         self.reg_write(LS0, LEDS_ON)
