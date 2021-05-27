@@ -6,6 +6,8 @@ from utime import sleep_ms
 #NB to get the chip to work, you cannot have the address pins or reset pin floating
 #address range: 0x60-0x67
 
+#still working out some kinks with losing packets, but im not sure if that is because of the physical cirtuit or this code
+
 # register definitions
 # byte fields: 0-2: unused, 3: autoincrement flag, 4-7: register address
 INPUT0 = const(0b00000000)
@@ -14,6 +16,7 @@ PSC0   = const(0b00000010)
 PWM0   = const(0b00000011)
 PSC1   = const(0b00000100)
 PWM1   = const(0b00000101)
+LSX    = const(0b00010110)
 LS0    = const(0b00000110)
 LS1    = const(0b00000111)
 LS2    = const(0b00001000)
@@ -43,7 +46,6 @@ class PCA9532():
         self.set_brightness(1, 127)
         
     def reg_write(self, register, value):
-        sleep_ms(100)
         self.temp[0] = register
         self.temp[1] = value
         self.i2c.writeto(self.address, self.temp)
@@ -51,6 +53,10 @@ class PCA9532():
     def reg_read(self, register):
         self.i2c.readfrom_into(self.address, self.temp_read)
         return(self.temp_read[0])
+    
+    def write_leds(self, vals):
+        temp = bytearray([LSX] + vals)
+        self.i2c.writeto(self.address, temp)
         
     def set_brightness(self, pwm, level):
         #0 = off, 255 = full brightness
@@ -64,15 +70,12 @@ class PCA9532():
                 
             
     def all_on(self):
-        self.reg_write(LS0, LEDS_ON)
-        self.reg_write(LS1, LEDS_ON)
-        self.reg_write(LS2, LEDS_ON)
-        self.reg_write(LS3, LEDS_ON)
+        self.write_leds([LEDS_ON, LEDS_ON, LEDS_ON, LEDS_ON])
         
     def all_off(self):
-        self.reg_write(LS0, LEDS_OFF)
-        self.reg_write(LS1, LEDS_OFF)
-        self.reg_write(LS2, LEDS_OFF)
-        self.reg_write(LS3, LEDS_OFF)
+        self.write_leds([LEDS_OFF, LEDS_OFF, LEDS_OFF, LEDS_OFF])
+        
+    def all_state(self, state):
+        self.write_leds([state, state, state, state])
         
         
