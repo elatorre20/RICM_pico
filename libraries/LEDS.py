@@ -30,7 +30,14 @@ LEDS_PWM1 = const(0b11111111)
 PWM_SMOOTH= const(0b00000010)
 BLINK_FAST= const(0b00100000)
 BLINK_SLOW= const(0b11111111)
-
+#colors
+WHITE   = const(0b00110101)
+RED     = const(0b00010000)
+GREEN   = const(0b00000100)
+BLUE    = const(0b00000001)
+CYAN    = const(0b00000101)
+MAGENTA = const(0b00110001)
+YELLOW  = const(0b00110100)
 
 
 class PCA9532():
@@ -68,7 +75,18 @@ class PCA9532():
         if(pwm == 1):
             self.reg_write(PWM1, level)
                 
-            
+    def RGB_LED(self, num, color):
+        r = None
+        if(num == 0):
+            r = LS0
+        elif(num == 1):
+            r = LS1
+        elif(num == 2):
+            r = LS2
+        elif(num == 3):
+            r = LS3
+        self.reg_write(r, color)
+        
     def all_on(self):
         self.write_leds([LEDS_ON, LEDS_ON, LEDS_ON, LEDS_ON])
         
