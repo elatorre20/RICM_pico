@@ -46,24 +46,30 @@ class PCA9532():
         self.address = address
         self.temp = bytearray(2)
         self.temp_read = bytearray(1)
+        self.state = [0] * 16
         #set PWM blink rate high enough for smooth dimming using duty cycle
         self.reg_write(PSC0, PWM_SMOOTH)
         self.reg_write(PSC1, PWM_SMOOTH)
+        #set PWMs to 50% and 25% brightness
         self.set_brightness(0, 127)
-        self.set_brightness(1, 127)
+        self.set_brightness(1, 63)
+        self.all_off()
         
     def reg_write(self, register, value):
         self.temp[0] = register
         self.temp[1] = value
         self.i2c.writeto(self.address, self.temp)
+        self.update_state()
     
     def reg_read(self, register):
         self.i2c.readfrom_into(self.address, self.temp_read)
-        return(self.temp_read[0])
+        return(bin(self.temp_read[0]))
     
     def write_leds(self, vals):
-        temp = bytearray([LSX] + vals)
-        self.i2c.writeto(self.address, temp)
+        self.reg_write(LS0, vals[0])
+        self.reg_write(LS1, vals[1])
+        self.reg_write(LS2, vals[2])
+        self.reg_write(LS3, vals[3])
         
     def set_brightness(self, pwm, level):
         #0 = off, 255 = full brightness
@@ -96,4 +102,22 @@ class PCA9532():
     def all_state(self, state):
         self.write_leds([state, state, state, state])
         
-        
+    def update_state(self):
+        a = self.reg_read(LS0)
+        b = self.reg_read(LS1)
+        c = self.reg_read(LS2)
+        d = self.reg_read(LS3)
+        s = ''
+        for i in([a,b,c,d]):
+            i = i[2:]
+            while(len(i) < 8):
+                i = '0' + i
+            s = s + i
+        i = 0
+        while(s != ''):
+            x = s[:2]
+            self.states[i] = int(x, 2)
+            i = i + 1
+            s = s[2:]
+            
+            
