@@ -15,6 +15,14 @@ def img_read(filename):
     imgbuf = framebuf.FrameBuffer(array, 128,int((len(px)/16)), framebuf.MONO_HLSB)
     return(imgbuf)
 
+def display_vid(screen, name, frames, framerate):
+    for i in range(frames):
+        temp = img_read('img/' + name + str(i) + '.bmp')
+        screen.blit(temp, 0,0)
+        screen.show()
+        utime.sleep((1/framerate)-0.05)
+        
+
 sda=machine.Pin(26)
 scl=machine.Pin(27)
 i2c=machine.I2C(1, sda=sda, scl=scl, freq=400000)

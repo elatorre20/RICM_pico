@@ -6,8 +6,6 @@ from utime import sleep_ms
 #NB to get the chip to work, you cannot have the address pins or reset pin floating
 #address range: 0x60-0x67
 
-#still working out some kinks with losing packets, but im not sure if that is because of the physical cirtuit or this code
-
 # register definitions
 # byte fields: 0-2: unused, 3: autoincrement flag, 4-7: register address
 INPUT0 = const(0b00000000)
@@ -116,8 +114,17 @@ class PCA9532():
         i = 0
         while(s != ''):
             x = s[:2]
-            self.states[i] = int(x, 2)
+            self.state[i] = int(x, 2)
             i = i + 1
             s = s[2:]
+            
+    def write_LED(self, num, state):
+        self.state[num] = state
+        self.update_LEDS
+    
+    def update_LEDS(self):
+        #add in something to update the chip LEDS from the state list
+        return(0)
+    
             
             
