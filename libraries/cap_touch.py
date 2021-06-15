@@ -34,11 +34,11 @@ class IS31SE5100():
         self.temp[0] = register
         self.temp[1] = value
         self.i2c.writeto(self.address, self.temp)
-        self.update_state()
     
     def reg_read(self, register):
-        self.i2c.readfrom_into(self.address, self.temp_read)
+        self.i2c.readfrom_mem_into(self.address, register, self.temp_read)
         return(bin(self.temp_read[0]))
+    
     
             
             

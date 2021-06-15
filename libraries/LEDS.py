@@ -60,7 +60,7 @@ class PCA9532():
         self.update_state()
     
     def reg_read(self, register):
-        self.i2c.readfrom_into(self.address, self.temp_read)
+        self.i2c.readfrom_mem_into(self.address, register, self.temp_read)
         return(bin(self.temp_read[0]))
     
     def write_leds(self, vals):
