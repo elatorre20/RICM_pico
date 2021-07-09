@@ -875,8 +875,8 @@ L Device:CP1 C1
 U 1 1 60F90BDA
 P 1350 950
 F 0 "C1" H 1465 996 50  0000 L CNN
-F 1 "10 μf" H 1465 905 50  0000 L CNN
-F 2 "Capacitor_THT:CP_Radial_D10.0mm_P5.00mm" H 1350 950 50  0001 C CNN
+F 1 "100 μf" H 1465 905 50  0000 L CNN
+F 2 "Capacitor_THT:CP_Radial_D7.5mm_P2.50mm" H 1350 950 50  0001 C CNN
 F 3 "~" H 1350 950 50  0001 C CNN
 	1    1350 950 
 	1    0    0    -1  
@@ -1669,17 +1669,6 @@ Text GLabel 6250 3100 2    50   Input ~ 0
 sw24
 Text GLabel 6250 3200 2    50   Input ~ 0
 sw25
-$Comp
-L Device:R_POT_TRIM RV3
-U 1 1 627689C6
-P 4050 1600
-F 0 "RV3" H 3980 1554 50  0000 R CNN
-F 1 "R_POT_TRIM" H 3980 1645 50  0000 R CNN
-F 2 "Potentiometer_THT:Potentiometer_Runtron_RM-065_Vertical" H 4050 1600 50  0001 C CNN
-F 3 "~" H 4050 1600 50  0001 C CNN
-	1    4050 1600
-	-1   0    0    1   
-$EndComp
 Text GLabel 2700 2000 2    50   Input ~ 0
 AGND
 Text GLabel 3500 1950 3    50   Output ~ 0
@@ -1912,4 +1901,15 @@ Wire Wire Line
 	950  2400 950  2200
 Wire Wire Line
 	950  2200 1300 2200
+$Comp
+L Device:R_POT_TRIM RV3
+U 1 1 627689C6
+P 4050 1600
+F 0 "RV3" H 3980 1554 50  0000 R CNN
+F 1 "R_POT_TRIM" H 3980 1645 50  0000 R CNN
+F 2 "Potentiometer_THT:Potentiometer_Runtron_RM-065_Vertical" H 4050 1600 50  0001 C CNN
+F 3 "~" H 4050 1600 50  0001 C CNN
+	1    4050 1600
+	-1   0    0    1   
+$EndComp
 $EndSCHEMATC
