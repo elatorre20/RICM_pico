@@ -1343,27 +1343,8 @@ F 3 "~" H 3550 4050 50  0001 C CNN
 	1    3550 4050
 	0    -1   -1   0   
 $EndComp
-Wire Wire Line
-	5250 3000 5250 3100
-Connection ~ 5250 3100
-Connection ~ 5250 3200
-Wire Wire Line
-	5250 3100 5250 3200
-Wire Wire Line
-	5250 3200 5250 3400
 Text GLabel 6250 1600 2    50   Input Italic 0
 sw9
-$Comp
-L Interface_Expansion:PCA9555D U2
-U 1 1 60E12D9F
-P 5750 2400
-F 0 "U2" H 5750 3581 50  0000 C CNN
-F 1 "PCA9555D" H 5750 3490 50  0000 C CNN
-F 2 "Package_SO:SOIC-24W_7.5x15.4mm_P1.27mm" H 6700 1400 50  0001 C CNN
-F 3 "https://www.nxp.com/docs/en/data-sheet/PCA9555.pdf" H 5750 2400 50  0001 C CNN
-	1    5750 2400
-	1    0    0    -1  
-$EndComp
 Text GLabel 6800 3400 0    50   Input ~ 0
 sw19
 Text GLabel 6250 2600 2    50   Input ~ 0
@@ -1872,9 +1853,6 @@ Wire Wire Line
 	4800 800  4800 3800
 Wire Wire Line
 	4800 3800 5750 3800
-Wire Wire Line
-	5750 3800 5750 3400
-Connection ~ 5750 3400
 $Comp
 L Device:Fuse F1
 U 1 1 60F80D2C
@@ -1932,4 +1910,38 @@ F 3 "~" H 4050 1600 50  0001 C CNN
 	1    4050 1600
 	-1   0    0    1   
 $EndComp
+Connection ~ 5750 3400
+Connection ~ 5250 3200
+Connection ~ 5250 3100
+Wire Wire Line
+	5250 3100 5250 3200
+Wire Wire Line
+	5250 3000 5250 3100
+Wire Wire Line
+	5750 3800 5750 3400
+Wire Wire Line
+	5250 3200 5250 3400
+$Comp
+L Interface_Expansion:PCA9555D U2
+U 1 1 60E12D9F
+P 5750 2400
+F 0 "U2" H 5750 3581 50  0000 C CNN
+F 1 "PCA9555D" H 5750 3490 50  0000 C CNN
+F 2 "Package_SO:SOIC-24W_7.5x15.4mm_P1.27mm" H 6700 1400 50  0001 C CNN
+F 3 "https://www.nxp.com/docs/en/data-sheet/PCA9555.pdf" H 5750 2400 50  0001 C CNN
+	1    5750 2400
+	1    0    0    -1  
+$EndComp
+Text Label 10850 2200 0    50   ~ 0
+addr:0x60
+Text Label 10800 5100 0    50   ~ 0
+addr:0x61
+Text Label 5000 1250 0    50   ~ 0
+addr:0x20
+Text Label 5000 6400 0    50   ~ 0
+addr:0x21
+Text Label 1700 4650 0    50   ~ 0
+addr:0x3C
+Text Label 1700 5750 0    50   ~ 0
+addr:0x3C
 $EndSCHEMATC
