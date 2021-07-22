@@ -63,12 +63,12 @@ $EndComp
 $Comp
 L power:Earth #PWR0106
 U 1 1 60E48F60
-P 8800 2400
-F 0 "#PWR0106" H 8800 2150 50  0001 C CNN
-F 1 "Earth" H 8800 2250 50  0001 C CNN
-F 2 "" H 8800 2400 50  0001 C CNN
-F 3 "~" H 8800 2400 50  0001 C CNN
-	1    8800 2400
+P 8800 2450
+F 0 "#PWR0106" H 8800 2200 50  0001 C CNN
+F 1 "Earth" H 8800 2300 50  0001 C CNN
+F 2 "" H 8800 2450 50  0001 C CNN
+F 3 "~" H 8800 2450 50  0001 C CNN
+	1    8800 2450
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -734,10 +734,6 @@ F 3 "~" H 640 2250 50  0001 C CNN
 	1    650  2300
 	-1   0    0    -1  
 $EndComp
-Wire Wire Line
-	850  2300 1000 2300
-Wire Wire Line
-	1000 2300 1000 2450
 $Comp
 L power:Earth #PWR0104
 U 1 1 60DC0F1A
@@ -749,10 +745,6 @@ F 3 "~" H 1000 2450 50  0001 C CNN
 	1    1000 2450
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	900  3800 1500 3800
-Wire Wire Line
-	900  3900 1500 3900
 Connection ~ 12350 5500
 Wire Wire Line
 	12350 5500 12250 5500
@@ -847,23 +839,23 @@ $EndComp
 $Comp
 L power:Earth #PWR0123
 U 1 1 614EBE21
-P 8800 2000
-F 0 "#PWR0123" H 8800 1750 50  0001 C CNN
-F 1 "Earth" H 8800 1850 50  0001 C CNN
-F 2 "" H 8800 2000 50  0001 C CNN
-F 3 "~" H 8800 2000 50  0001 C CNN
-	1    8800 2000
+P 8800 2050
+F 0 "#PWR0123" H 8800 1800 50  0001 C CNN
+F 1 "Earth" H 8800 1900 50  0001 C CNN
+F 2 "" H 8800 2050 50  0001 C CNN
+F 3 "~" H 8800 2050 50  0001 C CNN
+	1    8800 2050
 	1    0    0    -1  
 $EndComp
 $Comp
 L power:Earth #PWR0124
 U 1 1 6153C445
-P 8800 1650
-F 0 "#PWR0124" H 8800 1400 50  0001 C CNN
-F 1 "Earth" H 8800 1500 50  0001 C CNN
-F 2 "" H 8800 1650 50  0001 C CNN
-F 3 "~" H 8800 1650 50  0001 C CNN
-	1    8800 1650
+P 8800 1700
+F 0 "#PWR0124" H 8800 1450 50  0001 C CNN
+F 1 "Earth" H 8800 1550 50  0001 C CNN
+F 2 "" H 8800 1700 50  0001 C CNN
+F 3 "~" H 8800 1700 50  0001 C CNN
+	1    8800 1700
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -1530,20 +1522,10 @@ Text GLabel 1250 2700 0    50   Input ~ 0
 GPIO11
 Text GLabel 1250 2600 0    50   Input ~ 0
 GPIO10
-Text GLabel 900  4100 2    50   Input ~ 0
-GPIO12
-Text GLabel 900  4000 2    50   Input ~ 0
-GPIO13
 Text GLabel 900  4200 2    50   Input ~ 0
 GPIO11
 Text GLabel 900  4300 2    50   Input ~ 0
 GPIO10
-Wire Wire Line
-	850  2400 950  2400
-Wire Wire Line
-	950  2400 950  2200
-Wire Wire Line
-	950  2200 1300 2200
 $Comp
 L power:+3.3V #PWR0144
 U 1 1 60EBDDFA
@@ -1878,17 +1860,6 @@ $EndComp
 Wire Wire Line
 	3200 950  3200 1900
 $Comp
-L MCU_RaspberryPi_and_Boards:Pico U1
-U 1 1 60DA1C47
-P 2000 2250
-F 0 "U1" H 2000 3465 50  0000 C CNN
-F 1 "Pico" H 2000 3374 50  0000 C CNN
-F 2 "MCU_RaspberryPi_and_Boards:RPi_Pico_SMD_TH" V 2000 2250 50  0001 C CNN
-F 3 "" H 2000 2250 50  0001 C CNN
-	1    2000 2250
-	1    0    0    -1  
-$EndComp
-$Comp
 L Device:R_POT_TRIM RV3
 U 1 1 627689C6
 P 4050 1600
@@ -2119,7 +2090,6 @@ Wire Wire Line
 	1100 2500 1100 2450
 Wire Wire Line
 	1100 2450 1000 2450
-Connection ~ 1000 2450
 Wire Wire Line
 	2700 2500 2800 2500
 Wire Wire Line
@@ -2127,10 +2097,10 @@ Wire Wire Line
 Wire Wire Line
 	2800 2350 2950 2350
 $Comp
-L power:Earth #PWR?
+L power:Earth #PWR0116
 U 1 1 6199CD4C
 P 2950 2350
-F 0 "#PWR?" H 2950 2100 50  0001 C CNN
+F 0 "#PWR0116" H 2950 2100 50  0001 C CNN
 F 1 "Earth" H 2950 2200 50  0001 C CNN
 F 2 "" H 2950 2350 50  0001 C CNN
 F 3 "~" H 2950 2350 50  0001 C CNN
@@ -2138,10 +2108,10 @@ F 3 "~" H 2950 2350 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:Earth #PWR?
+L power:Earth #PWR0155
 U 1 1 6199DCB4
 P 2850 1450
-F 0 "#PWR?" H 2850 1200 50  0001 C CNN
+F 0 "#PWR0155" H 2850 1200 50  0001 C CNN
 F 1 "Earth" H 2850 1300 50  0001 C CNN
 F 2 "" H 2850 1450 50  0001 C CNN
 F 3 "~" H 2850 1450 50  0001 C CNN
@@ -2155,10 +2125,10 @@ Wire Wire Line
 Wire Wire Line
 	2750 1450 2850 1450
 $Comp
-L power:Earth #PWR?
+L power:Earth #PWR0156
 U 1 1 619BE33A
 P 1100 1500
-F 0 "#PWR?" H 1100 1250 50  0001 C CNN
+F 0 "#PWR0156" H 1100 1250 50  0001 C CNN
 F 1 "Earth" H 1100 1350 50  0001 C CNN
 F 2 "" H 1100 1500 50  0001 C CNN
 F 3 "~" H 1100 1500 50  0001 C CNN
@@ -2179,14 +2149,42 @@ Wire Wire Line
 Wire Wire Line
 	2850 3000 2850 3150
 $Comp
-L power:Earth #PWR?
+L power:Earth #PWR0157
 U 1 1 61A1FEB9
 P 2850 3150
-F 0 "#PWR?" H 2850 2900 50  0001 C CNN
+F 0 "#PWR0157" H 2850 2900 50  0001 C CNN
 F 1 "Earth" H 2850 3000 50  0001 C CNN
 F 2 "" H 2850 3150 50  0001 C CNN
 F 3 "~" H 2850 3150 50  0001 C CNN
 	1    2850 3150
 	1    0    0    -1  
 $EndComp
+$Comp
+L MCU_RaspberryPi_and_Boards:Pico U1
+U 1 1 60DA1C47
+P 2000 2250
+F 0 "U1" H 2000 3465 50  0000 C CNN
+F 1 "Pico" H 2000 3374 50  0000 C CNN
+F 2 "MCU_RaspberryPi_and_Boards:RPi_Pico_SMD_TH" V 2000 2250 50  0001 C CNN
+F 3 "" H 2000 2250 50  0001 C CNN
+	1    2000 2250
+	1    0    0    -1  
+$EndComp
+Text GLabel 900  4000 2    50   Input ~ 0
+GPIO13
+Text GLabel 900  4100 2    50   Input ~ 0
+GPIO12
+Wire Wire Line
+	900  3900 1500 3900
+Wire Wire Line
+	900  3800 1500 3800
+Wire Wire Line
+	1000 2450 1000 2400
+Wire Wire Line
+	1000 2400 850  2400
+Connection ~ 1000 2450
+Wire Wire Line
+	850  2200 850  2300
+Wire Wire Line
+	850  2200 1300 2200
 $EndSCHEMATC

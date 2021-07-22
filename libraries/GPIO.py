@@ -35,7 +35,6 @@ class PCA9555():
         self.temp[0] = register
         self.temp[1] = value
         self.i2c.writeto(self.address, self.temp)
-        self.update_state()
     
     def reg_read(self, register):
         self.i2c.readfrom_mem_into(self.address, register, self.temp_read)
@@ -50,38 +49,15 @@ class PCA9555():
         self.reg_write(CFG1, CFG_INPUT)
         
     def setup_outputs(self):
-        self.reg_Write(CFG0, CFG_OUTPUT)
+        self.reg_write(CFG0, CFG_OUTPUT)
         self.reg_write(CFG1, CFG_OUTPUT)
         
     def all_high(self):
         self.write_outputs([OUTPUT_HIGH, OUTPUT_HIGH])
         
     def all_low(self):
-        self.write_leds([OUTPUT_LOW, OUTPUT_LOW])
+        self.write_outputs([OUTPUT_LOW, OUTPUT_LOW])
         
-    def update_state(self):
-        a = self.reg_read(INPUT0)
-        b = self.reg_read(INPUT1)
-        s = ''
-        for i in([a,b]):
-            i = i[2:]
-            while(len(i) < 8):
-                i = '0' + i
-            s = s + i
-        i = 0
-        while(s != ''):
-            x = s[:2]
-            self.state[i] = int(x, 2)
-            i = i + 1
-            s = s[2:]
-            
-    def write_outputs(self, num, state):
-        self.state[num] = state
-        self.update_LEDS
-    
-    def update_outputs(self):
-        #add in something to update the chip LEDS from the state list
-        return(0)
     
             
             
