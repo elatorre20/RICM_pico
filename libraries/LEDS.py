@@ -37,7 +37,11 @@ CYAN    = const(0b00000101)
 MAGENTA = const(0b00110001)
 YELLOW  = const(0b00110100)
 
+"""
+LEDS as connected:
 
+Chip 0 (: 
+"""
 class PCA9532():
     def __init__(self, i2c, address = 0x60):
         self.i2c = i2c

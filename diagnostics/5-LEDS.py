@@ -12,7 +12,7 @@ i2c=machine.I2C(1, sda=sda, scl=scl, freq=400000)
 
 controller = LEDS.PCA9532(i2c, 0x61)
 
-#NB requires that the resistor network RN4 and
+#NB requires that the resistor network RN4, R2 and
 #at least 1 LED connected to the chip have been installed
 
 while(True):
