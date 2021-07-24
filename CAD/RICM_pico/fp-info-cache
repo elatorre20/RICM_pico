@@ -1,4 +1,4 @@
-19230686533059596
+19232313617603651
 Battery
 BatteryHolder_Bulgin_BX0036_1xC
 Bulgin Battery Holder, BX0036, Battery Type C (https://www.bulgin.com/products/pub/media/bulgin/data/Battery_holders.pdf)
@@ -73463,6 +73463,13 @@ http://www.ttelectronics.com/sites/default/files/download-files/Datasheet_PanelP
 potentiometer vertical TT P0915N single
 0
 5
+3
+Potentiometer_THT
+Potentiometer_Tayda_Linear_20mm
+Bourns single-gang slide potentiometer, 20.0mm travel, https://www.bourns.com/docs/Product-Datasheets/pta.pdf
+Bourns single-gang slide potentiometer 20.0mm
+0
+3
 3
 Potentiometer_THT
 Potentiometer_Vishay_43_Horizontal

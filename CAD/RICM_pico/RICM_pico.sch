@@ -19,20 +19,9 @@ U 1 1 60DBA33A
 P 3500 1800
 F 0 "RV2" V 3293 1800 50  0000 C CNN
 F 1 "100k" V 3384 1800 50  0000 C CNN
-F 2 "Potentiometer_THT:Potentiometer_Bourns_PTA2043_Single_Slide" H 3500 1800 50  0001 C CNN
+F 2 "Potentiometer_THT:Potentiometer_Tayda_Linear_20mm" H 3500 1800 50  0001 C CNN
 F 3 "~" H 3500 1800 50  0001 C CNN
 	1    3500 1800
-	-1   0    0    1   
-$EndComp
-$Comp
-L Device:R_POT RV1
-U 1 1 60DBD11F
-P 3500 950
-F 0 "RV1" V 3293 950 50  0000 C CNN
-F 1 "100k" V 3384 950 50  0000 C CNN
-F 2 "Potentiometer_THT:Potentiometer_Bourns_PTA2043_Single_Slide" H 3500 950 50  0001 C CNN
-F 3 "~" H 3500 950 50  0001 C CNN
-	1    3500 950 
 	-1   0    0    1   
 $EndComp
 $Comp
@@ -403,7 +392,7 @@ L Device:R_Network09_US RN4
 U 1 1 61096C34
 P 13500 1350
 F 0 "RN4" H 13988 1396 50  0000 L CNN
-F 1 "330" H 13988 1305 50  0000 L CNN
+F 1 "510" H 13988 1305 50  0000 L CNN
 F 2 "Resistor_THT:R_Array_SIP10" V 14075 1350 50  0001 C CNN
 F 3 "http://www.vishay.com/docs/31509/csc.pdf" H 13500 1350 50  0001 C CNN
 	1    13500 1350
@@ -679,8 +668,6 @@ Wire Wire Line
 Wire Wire Line
 	10550 7100 14850 7100
 Wire Wire Line
-	14850 7100 14850 3700
-Wire Wire Line
 	14850 3700 15050 3700
 Wire Wire Line
 	10850 6400 10500 6400
@@ -698,8 +685,6 @@ Wire Wire Line
 	10450 6300 10450 7200
 Wire Wire Line
 	10450 7200 14950 7200
-Wire Wire Line
-	14950 7200 14950 4500
 Wire Wire Line
 	14950 4500 15050 4500
 Wire Wire Line
@@ -2187,4 +2172,19 @@ Wire Wire Line
 	850  2200 850  2300
 Wire Wire Line
 	850  2200 1300 2200
+Wire Wire Line
+	14950 7200 14950 4500
+Wire Wire Line
+	14850 7100 14850 3700
+$Comp
+L Device:R_POT RV1
+U 1 1 60DBD11F
+P 3500 950
+F 0 "RV1" V 3293 950 50  0000 C CNN
+F 1 "100k" V 3384 950 50  0000 C CNN
+F 2 "Potentiometer_THT:Potentiometer_Bourns_PTA2043_Single_Slide" H 3500 950 50  0001 C CNN
+F 3 "~" H 3500 950 50  0001 C CNN
+	1    3500 950 
+	-1   0    0    1   
+$EndComp
 $EndSCHEMATC

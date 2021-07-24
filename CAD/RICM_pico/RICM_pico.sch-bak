@@ -19,20 +19,9 @@ U 1 1 60DBA33A
 P 3500 1800
 F 0 "RV2" V 3293 1800 50  0000 C CNN
 F 1 "100k" V 3384 1800 50  0000 C CNN
-F 2 "Potentiometer_THT:Potentiometer_Bourns_PTA2043_Single_Slide" H 3500 1800 50  0001 C CNN
+F 2 "Potentiometer_THT:Potentiometer_Tayda_Linear_20mm" H 3500 1800 50  0001 C CNN
 F 3 "~" H 3500 1800 50  0001 C CNN
 	1    3500 1800
-	-1   0    0    1   
-$EndComp
-$Comp
-L Device:R_POT RV1
-U 1 1 60DBD11F
-P 3500 950
-F 0 "RV1" V 3293 950 50  0000 C CNN
-F 1 "100k" V 3384 950 50  0000 C CNN
-F 2 "Potentiometer_THT:Potentiometer_Bourns_PTA2043_Single_Slide" H 3500 950 50  0001 C CNN
-F 3 "~" H 3500 950 50  0001 C CNN
-	1    3500 950 
 	-1   0    0    1   
 $EndComp
 $Comp
@@ -403,7 +392,7 @@ L Device:R_Network09_US RN4
 U 1 1 61096C34
 P 13500 1350
 F 0 "RN4" H 13988 1396 50  0000 L CNN
-F 1 "330" H 13988 1305 50  0000 L CNN
+F 1 "510" H 13988 1305 50  0000 L CNN
 F 2 "Resistor_THT:R_Array_SIP10" V 14075 1350 50  0001 C CNN
 F 3 "http://www.vishay.com/docs/31509/csc.pdf" H 13500 1350 50  0001 C CNN
 	1    13500 1350
@@ -679,8 +668,6 @@ Wire Wire Line
 Wire Wire Line
 	10550 7100 14850 7100
 Wire Wire Line
-	14850 7100 14850 3700
-Wire Wire Line
 	14850 3700 15050 3700
 Wire Wire Line
 	10850 6400 10500 6400
@@ -698,8 +685,6 @@ Wire Wire Line
 	10450 6300 10450 7200
 Wire Wire Line
 	10450 7200 14950 7200
-Wire Wire Line
-	14950 7200 14950 4500
 Wire Wire Line
 	14950 4500 15050 4500
 Wire Wire Line
@@ -734,10 +719,6 @@ F 3 "~" H 640 2250 50  0001 C CNN
 	1    650  2300
 	-1   0    0    -1  
 $EndComp
-Wire Wire Line
-	850  2300 1000 2300
-Wire Wire Line
-	1000 2300 1000 2450
 $Comp
 L power:Earth #PWR0104
 U 1 1 60DC0F1A
@@ -749,10 +730,6 @@ F 3 "~" H 1000 2450 50  0001 C CNN
 	1    1000 2450
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	900  3800 1500 3800
-Wire Wire Line
-	900  3900 1500 3900
 Connection ~ 12350 5500
 Wire Wire Line
 	12350 5500 12250 5500
@@ -1530,20 +1507,10 @@ Text GLabel 1250 2700 0    50   Input ~ 0
 GPIO11
 Text GLabel 1250 2600 0    50   Input ~ 0
 GPIO10
-Text GLabel 900  4100 2    50   Input ~ 0
-GPIO12
-Text GLabel 900  4000 2    50   Input ~ 0
-GPIO13
 Text GLabel 900  4200 2    50   Input ~ 0
 GPIO11
 Text GLabel 900  4300 2    50   Input ~ 0
 GPIO10
-Wire Wire Line
-	850  2400 950  2400
-Wire Wire Line
-	950  2400 950  2200
-Wire Wire Line
-	950  2200 1300 2200
 $Comp
 L power:+3.3V #PWR0144
 U 1 1 60EBDDFA
@@ -1878,17 +1845,6 @@ $EndComp
 Wire Wire Line
 	3200 950  3200 1900
 $Comp
-L MCU_RaspberryPi_and_Boards:Pico U1
-U 1 1 60DA1C47
-P 2000 2250
-F 0 "U1" H 2000 3465 50  0000 C CNN
-F 1 "Pico" H 2000 3374 50  0000 C CNN
-F 2 "MCU_RaspberryPi_and_Boards:RPi_Pico_SMD_TH" V 2000 2250 50  0001 C CNN
-F 3 "" H 2000 2250 50  0001 C CNN
-	1    2000 2250
-	1    0    0    -1  
-$EndComp
-$Comp
 L Device:R_POT_TRIM RV3
 U 1 1 627689C6
 P 4050 1600
@@ -2119,7 +2075,6 @@ Wire Wire Line
 	1100 2500 1100 2450
 Wire Wire Line
 	1100 2450 1000 2450
-Connection ~ 1000 2450
 Wire Wire Line
 	2700 2500 2800 2500
 Wire Wire Line
@@ -2187,6 +2142,60 @@ F 1 "Earth" H 2850 3000 50  0001 C CNN
 F 2 "" H 2850 3150 50  0001 C CNN
 F 3 "~" H 2850 3150 50  0001 C CNN
 	1    2850 3150
+	1    0    0    -1  
+$EndComp
+$Comp
+L MCU_RaspberryPi_and_Boards:Pico U1
+U 1 1 60DA1C47
+P 2000 2250
+F 0 "U1" H 2000 3465 50  0000 C CNN
+F 1 "Pico" H 2000 3374 50  0000 C CNN
+F 2 "MCU_RaspberryPi_and_Boards:RPi_Pico_SMD_TH" V 2000 2250 50  0001 C CNN
+F 3 "" H 2000 2250 50  0001 C CNN
+	1    2000 2250
+	1    0    0    -1  
+$EndComp
+Text GLabel 900  4000 2    50   Input ~ 0
+GPIO13
+Text GLabel 900  4100 2    50   Input ~ 0
+GPIO12
+Wire Wire Line
+	900  3900 1500 3900
+Wire Wire Line
+	900  3800 1500 3800
+Wire Wire Line
+	1000 2450 1000 2400
+Wire Wire Line
+	1000 2400 850  2400
+Connection ~ 1000 2450
+Wire Wire Line
+	850  2200 850  2300
+Wire Wire Line
+	850  2200 1300 2200
+Wire Wire Line
+	14950 7200 14950 4500
+Wire Wire Line
+	14850 7100 14850 3700
+$Comp
+L Device:R_POT RV1
+U 1 1 60DBD11F
+P 3500 950
+F 0 "RV1" V 3293 950 50  0000 C CNN
+F 1 "100k" V 3384 950 50  0000 C CNN
+F 2 "Potentiometer_THT:Potentiometer_Bourns_PTA2043_Single_Slide" H 3500 950 50  0001 C CNN
+F 3 "~" H 3500 950 50  0001 C CNN
+	1    3500 950 
+	-1   0    0    1   
+$EndComp
+$Comp
+L Device:R_Pack08 RN5
+U 1 1 611856C3
+P 18200 5200
+F 0 "RN5" H 18588 5246 50  0000 L CNN
+F 1 "100" H 18588 5155 50  0000 L CNN
+F 2 "" V 18675 5200 50  0001 C CNN
+F 3 "~" H 18200 5200 50  0001 C CNN
+	1    18200 5200
 	1    0    0    -1  
 $EndComp
 $EndSCHEMATC
