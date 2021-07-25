@@ -1,4 +1,4 @@
-19232313617603651
+19233942499056224
 Battery
 BatteryHolder_Bulgin_BX0036_1xC
 Bulgin Battery Holder, BX0036, Battery Type C (https://www.bulgin.com/products/pub/media/bulgin/data/Battery_holders.pdf)
@@ -56062,6 +56062,13 @@ LED diameter 8.0mm 2 pins diameter 8.0mm 3 pins
 0
 3
 3
+LED_THT
+LED_D8.0mm_RGB
+LED, diameter 8.0mm, 2 pins, http://cdn-reichelt.de/documents/datenblatt/A500/LED8MMGE_LED8MMGN_LED8MMRT%23KIN.pdf
+LED diameter 8.0mm 2 pins
+0
+4
+4
 LED_THT
 LED_D10.0mm
 LED, diameter 10.0mm, 2 pins, http://cdn-reichelt.de/documents/datenblatt/A500/LED10-4500RT%23KIN.pdf

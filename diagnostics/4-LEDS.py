@@ -15,8 +15,8 @@ controller = LEDS.PCA9532(i2c, 0x60)
 #NB requires that the resistor network RN4, R2 and
 #at least 1 LED connected to the chip have been installed
 
-while(True):
-     controller.all_on()
-     utime.sleep_ms(100)
-     controller.all_off()
-     utime.sleep_ms(100)
+# while(True):
+#      controller.all_on()
+#      utime.sleep_ms(100)
+#      controller.all_off()
+#      utime.sleep_ms(100)
