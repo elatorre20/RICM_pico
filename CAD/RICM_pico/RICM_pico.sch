@@ -305,7 +305,7 @@ U 1 1 60DBF2B0
 P 650 2300
 F 0 "LS1" H 613 2617 50  0000 C CNN
 F 1 "Speaker" H 613 2526 50  0000 C CNN
-F 2 "Buzzer_Beeper:Buzzer_12x9.5RM7.6" H 650 2100 50  0001 C CNN
+F 2 "Buzzer_Beeper:Buzzer_12x9.5RM6.5" H 650 2100 50  0001 C CNN
 F 3 "~" H 640 2250 50  0001 C CNN
 	1    650  2300
 	-1   0    0    -1  
@@ -2210,4 +2210,41 @@ Connection ~ 13700 1200
 Connection ~ 13700 850 
 Wire Wire Line
 	13700 850  13700 1200
+$Comp
+L Connector:Conn_01x02_Male J2
+U 1 1 610FE95B
+P 750 4750
+F 0 "J2" H 858 4931 50  0000 C CNN
+F 1 "Conn_01x02_Male" H 858 4840 50  0000 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 750 4750 50  0001 C CNN
+F 3 "~" H 750 4750 50  0001 C CNN
+	1    750  4750
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:Earth #PWR0175
+U 1 1 610FF14E
+P 1300 4700
+F 0 "#PWR0175" H 1300 4450 50  0001 C CNN
+F 1 "Earth" H 1300 4550 50  0001 C CNN
+F 2 "" H 1300 4700 50  0001 C CNN
+F 3 "~" H 1300 4700 50  0001 C CNN
+	1    1300 4700
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	950  4750 1300 4750
+Wire Wire Line
+	1300 4750 1300 4700
+$Comp
+L power:+5V #PWR0176
+U 1 1 6110AFDB
+P 950 4850
+F 0 "#PWR0176" H 950 4700 50  0001 C CNN
+F 1 "+5V" H 965 5023 50  0000 C CNN
+F 2 "" H 950 4850 50  0001 C CNN
+F 3 "" H 950 4850 50  0001 C CNN
+	1    950  4850
+	-1   0    0    1   
+$EndComp
 $EndSCHEMATC

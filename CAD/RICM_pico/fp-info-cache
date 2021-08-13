@@ -1,4 +1,4 @@
-19233942499056224
+19235572668184531
 Battery
 BatteryHolder_Bulgin_BX0036_1xC
 Bulgin Battery Holder, BX0036, Battery Type C (https://www.bulgin.com/products/pub/media/bulgin/data/Battery_holders.pdf)
@@ -2147,6 +2147,13 @@ SW PUSH SMALL http://www.ckswitches.com/media/1457/ksa_ksl.pdf
 SW PUSH SMALL Tactile C&K
 0
 4
+2
+Buzzer_Beeper
+Buzzer_12x9.5RM6.5
+Generic Buzzer, D12mm height 9.5mm with RM7.6mm
+buzzer
+0
+2
 2
 Buzzer_Beeper
 Buzzer_12x9.5RM7.6
