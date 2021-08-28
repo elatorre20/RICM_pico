@@ -291,12 +291,12 @@ $EndComp
 $Comp
 L power:Earth #PWR0115
 U 1 1 619718CD
-P 1500 3800
-F 0 "#PWR0115" H 1500 3550 50  0001 C CNN
-F 1 "Earth" H 1500 3650 50  0001 C CNN
-F 2 "" H 1500 3800 50  0001 C CNN
-F 3 "~" H 1500 3800 50  0001 C CNN
-	1    1500 3800
+P 1750 6500
+F 0 "#PWR0115" H 1750 6250 50  0001 C CNN
+F 1 "Earth" H 1750 6350 50  0001 C CNN
+F 2 "" H 1750 6500 50  0001 C CNN
+F 3 "~" H 1750 6500 50  0001 C CNN
+	1    1750 6500
 	-1   0    0    1   
 $EndComp
 $Comp
@@ -1024,14 +1024,14 @@ sw11
 Text GLabel 6250 6300 3    50   Input ~ 0
 sw10
 $Comp
-L Connector:Conn_01x06_Male J1
+L Connector:Conn_01x10_Male J1
 U 1 1 61F30D5A
-P 700 4000
-F 0 "J1" H 808 4381 50  0000 C CNN
-F 1 "Conn_01x06_Male" H 808 4290 50  0000 C CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x06_P2.54mm_Vertical" H 700 4000 50  0001 C CNN
-F 3 "~" H 700 4000 50  0001 C CNN
-	1    700  4000
+P 950 6900
+F 0 "J1" H 1050 7500 50  0000 C TNN
+F 1 "Conn_01x10_Male" H 1050 7400 50  0000 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x10_P2.54mm_Vertical" H 950 6900 50  0001 C CNN
+F 3 "~" H 950 6900 50  0001 C CNN
+	1    950  6900
 	1    0    0    -1  
 $EndComp
 Text GLabel 1250 2900 0    50   Input ~ 0
@@ -1041,10 +1041,6 @@ GPIO12
 Text GLabel 1250 2700 0    50   Input ~ 0
 GPIO11
 Text GLabel 1250 2600 0    50   Input ~ 0
-GPIO10
-Text GLabel 900  4200 2    50   Input ~ 0
-GPIO11
-Text GLabel 900  4300 2    50   Input ~ 0
 GPIO10
 $Comp
 L power:+3.3V #PWR0144
@@ -1147,17 +1143,6 @@ F 3 "" H 5650 6200 50  0001 C CNN
 	1    5650 6200
 	1    0    0    -1  
 $EndComp
-$Comp
-L power:+3.3V #PWR0131
-U 1 1 60F85B99
-P 5150 8150
-F 0 "#PWR0131" H 5150 8000 50  0001 C CNN
-F 1 "+3.3V" H 5165 8323 50  0000 C CNN
-F 2 "" H 5150 8150 50  0001 C CNN
-F 3 "" H 5150 8150 50  0001 C CNN
-	1    5150 8150
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	5150 8350 5150 8250
 Connection ~ 5150 8350
@@ -1237,12 +1222,12 @@ Wire Wire Line
 $Comp
 L power:+3.3V #PWR0101
 U 1 1 60F90B1D
-P 1800 3900
-F 0 "#PWR0101" H 1800 3750 50  0001 C CNN
-F 1 "+3.3V" H 1815 4073 50  0000 C CNN
-F 2 "" H 1800 3900 50  0001 C CNN
-F 3 "" H 1800 3900 50  0001 C CNN
-	1    1800 3900
+P 2050 6600
+F 0 "#PWR0101" H 2050 6450 50  0001 C CNN
+F 1 "+3.3V" H 2065 6773 50  0000 C CNN
+F 2 "" H 2050 6600 50  0001 C CNN
+F 3 "" H 2050 6600 50  0001 C CNN
+	1    2050 6600
 	0    1    1    0   
 $EndComp
 $Comp
@@ -1539,12 +1524,8 @@ F 3 "" H 2000 2250 50  0001 C CNN
 	1    2000 2250
 	1    0    0    -1  
 $EndComp
-Text GLabel 900  4000 2    50   Input ~ 0
-GPIO13
-Text GLabel 900  4100 2    50   Input ~ 0
-GPIO12
 Wire Wire Line
-	900  3800 1500 3800
+	1150 6500 1750 6500
 Wire Wire Line
 	1000 2450 1000 2400
 Wire Wire Line
@@ -2008,7 +1989,7 @@ Wire Wire Line
 Wire Wire Line
 	12050 2850 11900 2850
 Wire Wire Line
-	900  3900 1800 3900
+	1150 6600 2050 6600
 $Comp
 L Device:C C3
 U 1 1 614C91A3
@@ -2247,4 +2228,23 @@ F 3 "" H 950 4850 50  0001 C CNN
 	1    950  4850
 	-1   0    0    1   
 $EndComp
+Text GLabel 1150 6800 2    50   Input ~ 0
+GPIO12
+Text GLabel 1150 6700 2    50   Input ~ 0
+GPIO13
+Text GLabel 1150 7000 2    50   Input ~ 0
+GPIO10
+Text GLabel 1150 6900 2    50   Input ~ 0
+GPIO11
+Text GLabel 1150 7100 2    50   BiDi ~ 0
+SCL1
+Text GLabel 1150 7200 2    50   BiDi ~ 0
+SDA1
+Text GLabel 1150 7300 2    50   BiDi ~ 0
+SCL0
+Text GLabel 1150 7400 2    50   BiDi ~ 0
+SDA0
+Wire Wire Line
+	5150 8150 5150 8250
+Connection ~ 5150 8250
 $EndSCHEMATC

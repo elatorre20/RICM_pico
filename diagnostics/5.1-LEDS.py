@@ -38,6 +38,5 @@ for i in [LEDS.LS0, LEDS.LS1, LEDS.LS2, LEDS.LS3]:
         j = (j*4)+1
         
 controller1.all_off()
+controller0.all_off()
 
-controller0.all_on()
-controller1.all_on()

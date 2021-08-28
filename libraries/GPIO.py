@@ -40,6 +40,12 @@ class PCA9555():
         self.i2c.readfrom_mem_into(self.address, register, self.temp_read)
         return(bin(self.temp_read[0]))
     
+    def reg_bit(self, register, bit):
+        self.i2c.readfrom_mem_into(self.address, register, self.temp_read)
+        mask = 1 << bit
+        self.temp_read[0] = self.temp_read[0] & mask
+        return(bin(self.temp_read[0]))
+
     def write_outputs(self, vals):
         self.reg_write(OUTPUT0, vals[0])
         self.reg_write(OUTPUT1, vals[1])
