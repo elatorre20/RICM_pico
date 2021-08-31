@@ -28,7 +28,7 @@ else:
     oled0.poweron()
 
     print("Writing text to OLED")
-    oled0.text("screen 0", 0, 0)
+    oled0.text("screen 1", 0, 0)
 
     print("Turning on OLED display")
     oled0.show()

@@ -14,30 +14,35 @@ x = 0
 y = 0
 z = 0
 
-print("Writing random colors to WS2812B and rotating 1 LED position")
-loop = 1
-while(loop < 50):
-    x = random.randint(0,63)
-    y = random.randint(0,63)
-    z = random.randint(0,63)
-    pixels.rotate_right(1)
-    pixels.set_pixel(0,x,y,z)
-    pixels.show()
-    time.sleep_ms(150)
-    loop = loop + 1
+#Trap a ^c to stop the loop and turn off the LEDs
+try:
+    while(True):
+        print("Writing random colors to WS2812B and rotating 1 LED position")
+        loop = 1
+        while(loop < 50):
+            x = random.randint(0,63)
+            y = random.randint(0,63)
+            z = random.randint(0,63)
+            pixels.rotate_right(1)
+            pixels.set_pixel(0,x,y,z)
+            pixels.show()
+            time.sleep_ms(150)
+            loop = loop + 1
 
-print("Writing random color to random WS2812B LED")
-loop = 1
-while(loop < 100):
-    led = random.randint(0,8)
-    x = random.randint(0,63)
-    y = random.randint(0,63)
-    z = random.randint(0,63)
-    pixels.set_pixel(led,x,y,z)
-    pixels.show()
-    time.sleep_ms(150)
-    loop = loop + 1
+        print("Writing random color to random WS2812B LED")
+        loop = 1
+        while(loop < 100):
+            led = random.randint(0,8)
+            x = random.randint(0,63)
+            y = random.randint(0,63)
+            z = random.randint(0,63)
+            pixels.set_pixel(led,x,y,z)
+            pixels.show()
+            time.sleep_ms(150)
+            loop = loop + 1
     
-print("Turning LEDs off")
-pixels.fill(0,0,0)
-pixels.show()
+#A ^c was entered, so turn off the LEDs
+except:
+    print("Turning LEDs off")
+    pixels.fill(0,0,0)
+    pixels.show()
