@@ -2,7 +2,7 @@ import machine
 import utime
 import random
 import OLED
-from machine import ADC, Pin      # Get the ADC and Pin libraries
+#from machine import ADC, Pin      # Get the ADC and Pin libraries
 
 #displays the display ID on the OLED screens
 #tests: OLED module 1
