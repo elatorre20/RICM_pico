@@ -28,7 +28,11 @@ else:
     oled0.poweron()
 
     print("Writing text to OLED")
+<<<<<<< HEAD
+    oled0.text("screen 0", 0, 0)
+=======
     oled0.text("screen 1", 0, 0)
+>>>>>>> a6e853fc04507dd7b6dacb5bb268c9d2ff454042
 
     print("Turning on OLED display")
     oled0.show()
