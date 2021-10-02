@@ -40,12 +40,12 @@ conversion_factor = (oled_width-20) / (65535)
 #Configure the I2C0 controller
 sda=machine.Pin(20)
 scl=machine.Pin(21)
-i2c0=machine.I2C(0, sda=sda, scl=scl, freq=400000)
+i2c0=machine.I2C(0, sda=sda, scl=scl, freq=1500000)
 
 #Configure the I2C1 controller
 sda=machine.Pin(18)
 scl=machine.Pin(19)
-i2c1=machine.I2C(1, sda=sda, scl=scl, freq=400000)
+i2c1=machine.I2C(1, sda=sda, scl=scl, freq=1500000)
 
 #code for beeps
 def playtone(frequency):
