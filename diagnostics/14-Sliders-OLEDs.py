@@ -49,7 +49,8 @@ i2c1=machine.I2C(1, sda=sda, scl=scl, freq=1500000)
 
 #code for beeps
 def playtone(frequency):
-    speaker.duty_u16(32768)
+#    speaker.duty_u16(32768)
+    speaker.duty_u16(0)
     speaker.freq(frequency)
 
 def bequiet():
@@ -164,12 +165,22 @@ else:
 
             #Ball almost at bottom of screen, check to see if it hit the paddle
             if ball_y == (oled_height - ball_height - 1):
-                if ball_x >= (paddle2_x - ball_height):
-                    if ball_x <= (paddle2_x + paddle_width):
-                        ball_y_increase = False
-                        playtone(tones["C5"])
-                        utime.sleep_ms(30)
-                        bequiet()
+                if ball_screen == 1:
+                    paddle_current = paddle1_x
+                    if ball_x <= (paddle_current + ball_width):
+                        if ball_x <= (paddle_current + paddle_width):
+                            ball_y_increase = False
+                            playtone(tones["C5"])
+                            utime.sleep_ms(30)
+                            bequiet()
+                else:
+                    paddle_current = paddle2_x
+                    if ball_x >= (paddle_current + ball_width):
+                        if ball_x <= (paddle_current + paddle_width):
+                            ball_y_increase = False
+                            playtone(tones["C5"])
+                            utime.sleep_ms(30)
+                            bequiet()
 
             #Ball at bottom of screen, didn't hit paddle so restart
             if ball_y == (oled_height - ball_height):
